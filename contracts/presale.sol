@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.6.12;
+pragma solidity 0.8;
 pragma experimental ABIEncoderV2;
-
+import "hardhat/console.sol";
 interface IERC20 {
     event Approval(
         address indexed owner,
@@ -39,9 +39,9 @@ interface IERC20 {
 contract Context {
     // Empty internal constructor, to prevent people from mistakenly deploying
     // an instance of this contract, which should be used via inheritance.
-    constructor() internal {}
+    constructor() {}
 
-    function _msgSender() internal view returns (address payable) {
+    function _msgSender() internal view returns (address) {
         return msg.sender;
     }
 
@@ -60,7 +60,7 @@ contract Ownable is Context {
         address indexed newOwner
     );
 
-    constructor() internal {
+    constructor() {
         address msgSender = _msgSender();
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
@@ -142,9 +142,9 @@ contract Presale is Claimable {
     }
 
     function buy() public payable {
+        console.log("before buy function");
         uint256 tokenAmount = (msg.value * getPrice()) / 1e6;
         IERC20(tokenAddress).transfer(msg.sender, tokenAmount);
-
         (bool sent, ) = owner().call{value: msg.value}("");
         require(sent, "Failed to send Ether");
         emit Buy(msg.sender, tokenAmount);

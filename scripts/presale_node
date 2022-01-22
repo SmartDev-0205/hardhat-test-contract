@@ -1,0 +1,25 @@
+const ethers = require('ethers');
+let provider = ethers.getDefaultProvider('rinkeby');
+const ERC20ABI =
+    require("../artifacts/contracts/ERC20.sol/ERC20.json").abi;
+const PresaleABI =
+    require("../artifacts/contracts/presale.sol/Presale.json").abi;
+let privateKey = '0cba3c125bf0a07264f510f6d6df6eda7fe3c4edae347b8cffb0a1851d8caa6c';
+let wallet = new ethers.Wallet(privateKey, provider);
+let contractAddress = "0xce24E1cd19dc25ECE71970694A33F0517C101b2e";
+let contract = new ethers.Contract(contractAddress, abi, provider);
+async function main() {
+    let contractWithSigner = contract.connect(wallet);
+    console.log("get price :", await contractWithSigner.getPrice());
+}
+const runMain = async() => {
+    try {
+        await main();
+        process.exit(0);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+};
+
+runMain();

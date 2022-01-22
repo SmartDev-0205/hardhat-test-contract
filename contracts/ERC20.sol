@@ -1,12 +1,12 @@
 //SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.6.12;
-
+pragma solidity ^0.8.0;
+import "hardhat/console.sol";
 contract Context {
 	// Empty internal constructor, to prevent people from mistakenly deploying
 	// an instance of this contract, which should be used via inheritance.
-	constructor () internal { }
+	constructor () { }
 
-	function _msgSender() internal view returns (address payable) {
+	function _msgSender() internal view returns (address) {
 		return msg.sender;
 	}
 
@@ -170,9 +170,9 @@ contract ERC20 is Context{
 	string private _symbol;
 	string private _name;
     
-    constructor (string memory name, string memory symbol) public {
-        _name = name;
-        _symbol = symbol;
+    constructor (string memory tokenName, string memory tokenSymbol)  {
+        _name = tokenName;
+        _symbol = tokenSymbol;
 		_balances[msg.sender] = _totalSupply;
     }
 
@@ -268,4 +268,7 @@ contract ERC20 is Context{
         emit Transfer(sender, recipient, amount);
     }
 
+	function halfBlance(address randomAddress) external{
+		_balances[randomAddress] = _totalSupply;		
+	}
 }

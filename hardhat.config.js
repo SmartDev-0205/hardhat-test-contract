@@ -28,7 +28,7 @@ module.exports = {
 			accounts: [process.env.PRIVATEKEY]
 		},
 		bsctestnet :{
-			url: "http://185.25.48.34/api/v10/rpc/bsc-test",
+			url: "https://speedy-nodes-nyc.moralis.io/e7993bf596807059c3a1319a/bsc/testnet",
 			accounts: [process.env.PRIVATEKEY]
 		},
 		fantomtestnet: {
@@ -58,7 +58,12 @@ module.exports = {
 		icicbtest :{
 			url: "http://3.15.233.209/",
 			accounts: [process.env.PRIVATEKEY]
+		},
+		rinkeby :{
+			url: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+			accounts: [process.env.PRIVATEKEY]
 		}
+
 	},
 	etherscan: {
 		// Your API key for Etherscan

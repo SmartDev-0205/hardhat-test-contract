@@ -22,3 +22,6 @@ contract deploy to fantomtestnet
 ### `npm run deploy`
 
 contract deploy to binance smart chain
+
+Environment for Rubkeby testnetwork
+

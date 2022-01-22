@@ -5,16 +5,15 @@ const ERC20ABI =
     require("../artifacts/contracts/ERC20.sol/ERC20.json").abi;
 const PresaleABI =
     require("../artifacts/contracts/presale.sol/Presale.json").abi;
-
 async function main() {
     // get network
-    var [owner] = await ethers.getSigners();
-
+    let [owner] = await ethers.getSigners();
+    console.log(owner.address);
     let network = await owner.provider._networkPromise;
 
     //QE token deployment
     const ERC20TOKEN = await ethers.getContractFactory("ERC20");
-    const tokenContract = await ERC20TOKEN.deploy("QEToken", "QE");
+    const tokenContract = await ERC20TOKEN.deploy("KGHToken", "kgh");
     await tokenContract.deployed();
 
     //presale deployment
